@@ -1,4 +1,6 @@
-import { FolderOpen, Github, Linkedin, Phone, Shapes, UserRound } from 'lucide-react';
+'use client';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
 
 import {
   Select,
@@ -8,17 +10,21 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-
-import { ToggleMode } from '../ToggleMode';
+import { sideBarTabs } from '@/lib/mockData';
 
 export const Sidebar = () => {
+  const { setTheme } = useTheme();
+
   return (
     <div className="flex flex-col justify-between w-full h-full">
       <div className="flex flex-col w-full">
-        <div className="flex p-4 border-t border-b">
+        <div className="flex p-3 border-t border-b">
+          <h1 className="text-lg font-bold">InboxFolio</h1>
+        </div>
+        <div className="flex p-3 border-b">
           <span className="w-full font-semibold">
             <section className="w-full">
-              <Select>
+              <Select onValueChange={(value) => setTheme(value)} defaultValue="system">
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Theme" />
                 </SelectTrigger>
@@ -34,49 +40,25 @@ export const Sidebar = () => {
 
         <div className="flex flex-col p-4 border-b">
           <ToggleGroup type="single" className="flex flex-col w-full">
-            <ToggleGroupItem value="projects" aria-label="Toggle projects" className="flex w-full">
-              <div className="flex w-full gap-2">
-                <FolderOpen className="w-4 h-4" />
-                <p>Projects</p>
-              </div>
-            </ToggleGroupItem>
-            <ToggleGroupItem value="skills" aria-label="Toggle skills" className="flex w-full">
-              <div className="flex w-full gap-2">
-                <Shapes className="w-4 h-4" />
-                <p>Skills</p>
-              </div>
-            </ToggleGroupItem>
-            <ToggleGroupItem value="about" aria-label="Toggle about" className="flex w-full">
-              <div className="flex w-full gap-2">
-                <UserRound className="w-4 h-4" />
-                <p>About me</p>
-              </div>
-            </ToggleGroupItem>
-            <ToggleGroupItem value="contact" aria-label="Toggle contact" className="flex w-full">
-              <div className="flex w-full gap-2">
-                <Phone className="w-4 h-4" />
-                <p>Contact</p>
-              </div>
-            </ToggleGroupItem>
-
-            <ToggleGroupItem value="github" aria-label="Toggle github" className="flex w-full">
-              <div className="flex w-full gap-2">
-                <Github className="w-4 h-4" />
-                <p>Github</p>
-              </div>
-            </ToggleGroupItem>
-
-            <ToggleGroupItem value="linkedin" aria-label="Toggle linkedin" className="flex w-full">
-              <div className="flex w-full gap-2">
-                <Linkedin className="w-4 h-4" />
-                <p>Linkedin</p>
-              </div>
-            </ToggleGroupItem>
+            {sideBarTabs.map((tab) => {
+              const Icon = tab.icon;
+              return (
+                <ToggleGroupItem
+                  key={tab.id}
+                  value={tab.id}
+                  aria-label={`Toggle ${tab.id}`}
+                  className="flex w-full"
+                >
+                  <Link href={tab.path} className="flex w-full gap-2">
+                    <Icon className="w-4 h-4" />
+                    <p>{tab.label}</p>
+                  </Link>
+                </ToggleGroupItem>
+              );
+            })}
           </ToggleGroup>
         </div>
       </div>
-
-      <ToggleMode />
     </div>
   );
 };

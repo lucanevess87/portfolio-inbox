@@ -1,24 +1,30 @@
-import { Sidebar } from '@/components/Sidebar';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+'use client';
+
+import { Fragment } from 'react';
+
+import { Detail } from '@/components/Detail';
+import { MainContent } from '@/components/MainContent';
+import { ResizableHandle, ResizablePanel } from '@/components/ui/resizable';
+import { useDetailContext } from '@/context/useDetailContext';
 
 export default function Home() {
+  const { content } = useDetailContext();
+
   return (
-    <ResizablePanelGroup direction="horizontal" className="min-h-[100vh] border rounded-lg">
-      <ResizablePanel defaultSize={20}>
-        <Sidebar />
-      </ResizablePanel>
+    <Fragment>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={40}>
-        <div className="flex items-start h-full p-6 justify-start-center">
-          <span className="font-semibold">Content</span>
-        </div>
+      <ResizablePanel defaultSize={content ? 45 : 80}>
+        <MainContent />
       </ResizablePanel>
-      <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={40}>
-        <div className="flex items-start h-full p-6 justify-start-center">
-          <span className="font-semibold">Detail</span>
-        </div>
-      </ResizablePanel>
-    </ResizablePanelGroup>
+
+      {content && (
+        <Fragment>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={35}>
+            <Detail />
+          </ResizablePanel>
+        </Fragment>
+      )}
+    </Fragment>
   );
 }
