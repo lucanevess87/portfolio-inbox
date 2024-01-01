@@ -43,8 +43,9 @@ export const MainContent = () => {
             return (
               <Card
                 className={clsx(
-                  'py-2 cursor-pointer dark:hover:bg-zinc-800 hover:bg-zinc-100',
-                  project?.id === content?.id && 'dark:bg-zinc-800 bg-zinc-100',
+                  'py-2 cursor-pointer dark:hover:bg-zinc-800 dark:hover:bg-opacity-25 hover:bg-zinc-100',
+                  project?.id === content?.id &&
+                    'dark:bg-zinc-800 dark:hover:bg-opacity-25 bg-zinc-100',
                 )}
                 key={project.id}
                 onClick={() => {

@@ -12,7 +12,7 @@ export default function Home() {
         <MainContent />
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={35}>
+      <ResizablePanel defaultSize={35} minSize={20}>
         <Detail />
       </ResizablePanel>
     </Fragment>
