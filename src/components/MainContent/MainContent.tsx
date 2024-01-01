@@ -30,7 +30,7 @@ export const MainContent = () => {
         <h1 className="text-lg font-bold">Projects</h1>
       </div>
 
-      <div className="flex flex-col gap-3 p-3">
+      <div className="flex flex-col h-full gap-3 p-3">
         <Input
           type="text"
           placeholder="Search"
@@ -38,7 +38,7 @@ export const MainContent = () => {
           onChange={(event) => setSearch(event.target.value)}
         />
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col h-full gap-3 pb-16 overflow-y-auto">
           {filteredProjects.map((project) => {
             return (
               <Card
@@ -60,7 +60,9 @@ export const MainContent = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="px-4 py-2">
-                  <p className="text-sm font-normal opacity-80">{project.description}</p>
+                  <p className="text-sm font-normal text-justify opacity-80 line-clamp-2">
+                    {project.description}
+                  </p>
                 </CardContent>
                 <CardFooter className="gap-2 px-4 py-2">
                   {project.tags.map((tag, index) => {

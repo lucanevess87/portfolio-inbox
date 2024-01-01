@@ -15,6 +15,7 @@ export type Content = {
   subtitle: string;
   description: string;
   tags: string[];
+  images: string[];
 };
 
 type DetailContextType = {

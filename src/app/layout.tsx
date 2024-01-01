@@ -25,7 +25,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange
         >
           <DetailContextProvider>
-            <ResizablePanelGroup direction="horizontal" className="min-h-[100vh] border rounded-lg">
+            <ResizablePanelGroup
+              direction="horizontal"
+              className="!h-[100vh] border rounded-lg !overflow-hidden"
+            >
               <ResizablePanel defaultSize={20} minSize={20}>
                 <Sidebar />
               </ResizablePanel>
