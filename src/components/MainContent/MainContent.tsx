@@ -29,7 +29,6 @@ export const MainContent = () => {
       <div className="flex p-3 border-t border-b">
         <h1 className="text-lg font-bold">Projects</h1>
       </div>
-
       <div className="flex flex-col h-full gap-3 p-3">
         <Input
           type="text"
@@ -37,7 +36,6 @@ export const MainContent = () => {
           value={search}
           onChange={(event) => setSearch(event.target.value)}
         />
-
         <div className="flex flex-col h-full gap-3 pb-16 overflow-y-auto">
           {filteredProjects.map((project) => {
             return (
