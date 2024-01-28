@@ -37,7 +37,6 @@ export const Sidebar = () => {
             </section>
           </span>
         </div>
-
         <div className="flex flex-col p-4 border-b">
           <ToggleGroup type="single" className="flex flex-col w-full">
             {sideBarTabs.map((tab) => {
