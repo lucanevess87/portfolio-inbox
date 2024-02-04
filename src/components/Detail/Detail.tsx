@@ -63,9 +63,9 @@ export const Detail = () => {
         <div className="flex justify-center w-full p-4">
           <Card className="w-full py-2">
             <CardHeader className="px-4 py-2">
-              <CardTitle className="font-bold text-md">Select some project</CardTitle>
+              <CardTitle className="font-bold text-md">Select any project</CardTitle>
               <CardDescription className="text-sm font-normal ">
-                Select a project from the project list
+                Select any project from the project list
               </CardDescription>
             </CardHeader>
             <CardFooter className="gap-2 px-4 py-2">

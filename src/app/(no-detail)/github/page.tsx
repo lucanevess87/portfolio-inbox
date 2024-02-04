@@ -1,7 +1,9 @@
 import clsx from 'clsx';
+import Link from 'next/link';
 
 import { getRepositories } from '@/api';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -16,8 +18,11 @@ export default async function GithubPage() {
 
   return (
     <div className="flex flex-col justify-start w-full h-full">
-      <div className="flex p-3 border-t border-b">
+      <div className="flex p-3 border-t border-b items-center justify-between">
         <h1 className="text-lg font-bold">Github</h1>
+        <Button variant="link">
+          <Link href="https://github.com/lucanevess87">check out my github page</Link>
+        </Button>
       </div>
 
       <div className="flex flex-col h-full gap-3 p-3 pb-16 overflow-y-auto">

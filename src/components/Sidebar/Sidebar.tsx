@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 
 import {
@@ -9,10 +10,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { sideBarTabs } from '@/lib/mockData';
+import { cn } from '@/lib/utils';
 
 export const Sidebar = () => {
+  const pathname = usePathname();
   const { setTheme } = useTheme();
 
   return (
@@ -38,24 +40,26 @@ export const Sidebar = () => {
           </span>
         </div>
         <div className="flex flex-col p-4 border-b">
-          <ToggleGroup type="single" className="flex flex-col w-full">
+          <div className="flex flex-col w-full">
             {sideBarTabs.map((tab) => {
               const Icon = tab.icon;
               return (
-                <ToggleGroupItem
+                <Link
                   key={tab.id}
-                  value={tab.id}
-                  aria-label={`Toggle ${tab.id}`}
-                  className="flex w-full"
+                  href={tab.path}
+                  className={cn(
+                    'flex w-full py-2 px-4 rounded-md gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-700 dar:hover:bg-opacity-25',
+                    {
+                      'dark:bg-zinc-800 dark:bg-opacity-25 bg-zinc-100 ': pathname === tab.path,
+                    },
+                  )}
                 >
-                  <Link href={tab.path} className="flex w-full gap-2">
-                    <Icon className="w-4 h-4" />
-                    <p>{tab.label}</p>
-                  </Link>
-                </ToggleGroupItem>
+                  <Icon className="w-4 h-4" />
+                  <p>{tab.label}</p>
+                </Link>
               );
             })}
-          </ToggleGroup>
+          </div>
         </div>
       </div>
     </div>
